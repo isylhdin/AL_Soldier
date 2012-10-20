@@ -4,6 +4,7 @@ public class WeaponDeco implements Soldier {
 
 	@Override
 	public int strike() {
+		//test
 		return 0;
 	}
 
