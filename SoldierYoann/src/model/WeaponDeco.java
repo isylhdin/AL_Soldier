@@ -4,7 +4,6 @@ public class WeaponDeco implements Soldier {
 
 	@Override
 	public int strike() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
