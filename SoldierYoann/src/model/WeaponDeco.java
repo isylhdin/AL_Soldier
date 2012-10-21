@@ -2,16 +2,26 @@ package model;
 
 public class WeaponDeco implements Soldier {
 
+	private Soldier s;
+	
+	public WeaponDeco(Soldier s) {
+		super();
+		this.s = s;
+	}
+
 	@Override
 	public int strike() {
-		//2eme test
-		return 0;
+		return s.strike();
 	}
 
 	@Override
 	public int parry() {
-		// TODO Auto-generated method stub
-		return 0;
+		return s.parry();
+	}
+
+	@Override
+	public int getHp() {
+		return s.getHp();
 	}
 
 }

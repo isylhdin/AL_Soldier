@@ -2,16 +2,23 @@ package model;
 
 public class InfantryMan implements Soldier {
 
+	private final int hp = 100;
+	private final int strength = 100;
+	
 	@Override
 	public int strike() {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("Infantry man strike "+ strength);
+		return strength;
 	}
 
 	@Override
 	public int parry() {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getHp() {
+		return hp;
 	}
 
 }
