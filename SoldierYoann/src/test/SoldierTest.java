@@ -22,8 +22,6 @@ public class SoldierTest {
 		s = new InfantryMan();
 		sword = new Sword(s);
 		shield = new Shield(sword); 
-
-
 	}
 
 	@After
@@ -49,6 +47,15 @@ public class SoldierTest {
 		System.out.println("shieldStrikeTest");
 		assertEquals(360, shield.strike());
 		System.out.println("-----------------------");
+	}
+	
+	@Test
+	public void parryTest(){
+		int damage = 360;
+		System.out.println("Soldier reçoit un coup de "+damage+" dégats et il pare avec son bouclier, il a initialement " + s.getHp() + " hp");
+		shield.parry(damage);
+		assertEquals(s.getHp(), 40);
+		System.out.println("il lui reste "+ s.getHp() +" hp");
 	}
 
 }

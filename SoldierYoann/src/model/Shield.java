@@ -16,9 +16,8 @@ public class Shield extends WeaponDeco {
 	}
 
 	@Override
-	public int parry() {
-		// TODO Auto-generated method stub
-		return super.parry();
+	public void parry(int damage) {
+		super.parry(damage/3);
 	}
 
 }

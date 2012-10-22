@@ -17,8 +17,8 @@ public class Sword extends WeaponDeco {
 	}
 
 	@Override
-	public int parry() {
-		return super.parry();
+	public void parry(int damage) {
+		super.parry(damage/2);
 	}
 
 

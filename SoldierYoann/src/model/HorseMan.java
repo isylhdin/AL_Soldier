@@ -3,7 +3,7 @@ package model;
 public class HorseMan implements Soldier {
 
 	private final int strength = 150;
-	private final int hp = 100;
+	private int hp = 100;
 	
 	
 	@Override
@@ -13,9 +13,8 @@ public class HorseMan implements Soldier {
 	}
 
 	@Override
-	public int parry() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void parry(int receivedDamage) {
+		this.hp -= receivedDamage;
 	}
 
 	@Override

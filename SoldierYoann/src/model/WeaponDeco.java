@@ -15,8 +15,8 @@ public class WeaponDeco implements Soldier {
 	}
 
 	@Override
-	public int parry() {
-		return s.parry();
+	public void parry(int damage) {
+		s.parry(damage);
 	}
 
 	@Override
