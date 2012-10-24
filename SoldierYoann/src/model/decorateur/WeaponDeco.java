@@ -1,4 +1,4 @@
-package model;
+package model.decorateur;
 
 public class WeaponDeco implements Soldier {
 
@@ -22,6 +22,10 @@ public class WeaponDeco implements Soldier {
 	@Override
 	public int getHp() {
 		return s.getHp();
+	}
+	
+	public Soldier getDeleg(){
+		return s;
 	}
 
 }

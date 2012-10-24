@@ -1,4 +1,4 @@
-package model;
+package model.decorateur;
 
 public class Sword extends WeaponDeco {
 

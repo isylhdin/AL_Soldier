@@ -1,4 +1,4 @@
-package model;
+package model.decorateur;
 
 public class Shield extends WeaponDeco {
 

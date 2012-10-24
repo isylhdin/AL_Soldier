@@ -1,4 +1,4 @@
-package model;
+package model.decorateur;
 
 public interface Soldier {
 	public int strike();

@@ -2,12 +2,15 @@ package test;
 
 import static org.junit.Assert.*;
 
-import model.InfantryMan;
-import model.Shield;
-import model.Soldier;
-import model.Sword;
+import model.decorateur.InfantryMan;
+import model.decorateur.Shield;
+import model.decorateur.Soldier;
+import model.decorateur.Sword;
+import model.proxy.InfantryManProxy;
+import model.proxy.SoldierProxy;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,6 +59,33 @@ public class SoldierTest {
 		shield.parry(damage);
 		assertEquals(s.getHp(), 40);
 		System.out.println("il lui reste "+ s.getHp() +" hp");
+		System.out.println("-----------------------");
 	}
+	
+	/****************************************************************************************************/
+	
+	@Test
+	public void AddSwordTest(){
+		SoldierProxy infantryMan = new InfantryManProxy();
+		
+		//Ajout d'une premiere sword
+		infantryMan.addSword();
+		
+		//Il n'est pas possible d'en ajouter une autre
+		Assert.assertEquals(false,infantryMan.canAddWeapon());
+		System.out.println("-----------------------");
+	}
+	
+	@Test
+	public void strikeProxy() {
+		System.out.println("Utilisation du proxy");
+		SoldierProxy infantryMan = new InfantryManProxy();
+		assertEquals(100, infantryMan.strike());
+		System.out.println("-----------------------");
+	}
+	
+	
+	
+	
 
 }
