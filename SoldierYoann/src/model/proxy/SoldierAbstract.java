@@ -1,7 +1,7 @@
 package model.proxy;
 
 import model.decorateur.Shield;
-import model.decorateur.Soldier;
+import model.decorateur.ISoldier;
 import model.decorateur.Sword;
 import model.decorateur.WeaponDeco;
 
@@ -16,20 +16,20 @@ import model.decorateur.WeaponDeco;
  * @author yoann
  *
  */
-public abstract class SoldierProxy implements SoldierProxyInterface {
+public abstract class SoldierAbstract implements Soldier {
 
-	private Soldier soldier;
+	private ISoldier soldier;
 
-	public SoldierProxy(Soldier soldier) {
+	public SoldierAbstract(ISoldier soldier) {
 		super();
 		this.soldier = soldier;
 	}
 	
 	
-	public boolean canAddWeapon(){
-		Soldier it = soldier;
+	public boolean canAddWeapon(Class weapon){
+		ISoldier it = soldier;
 		while(it instanceof WeaponDeco){
-			if(it instanceof Sword){
+			if(it.getClass().equals(weapon)){
 				System.out.println("Pas possible d'ajouter une nouvelle arme, le personnage en a déjà une !");
 				return false;
 			}else{
@@ -42,7 +42,7 @@ public abstract class SoldierProxy implements SoldierProxyInterface {
 	
 	@Override
 	public void addSword() {
-		if(canAddWeapon()){
+		if(canAddWeapon(Sword.class)){
 			soldier = new Sword(soldier);
 			System.out.println("Arme ajoutée !");
 		}
@@ -50,7 +50,7 @@ public abstract class SoldierProxy implements SoldierProxyInterface {
 
 	@Override
 	public void addShield() {
-		if(canAddWeapon()){
+		if(canAddWeapon(Shield.class)){
 			soldier = new Shield(soldier);
 			System.out.println("Bouclier ajouté !");
 		}
@@ -58,7 +58,7 @@ public abstract class SoldierProxy implements SoldierProxyInterface {
 
 	@Override
 	public int strike() {
-		return soldier.strike();
+		return soldier.strikeForce();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public abstract class SoldierProxy implements SoldierProxyInterface {
 
 	@Override
 	public int getHp() {
-		return soldier.getHp();
+		return soldier.getHealthPoints();
 	}
 
 }

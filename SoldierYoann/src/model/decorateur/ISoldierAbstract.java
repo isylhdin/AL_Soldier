@@ -1,12 +1,12 @@
 package model.decorateur;
 
-public abstract class SoldierAbstract implements Soldier {
+public abstract class ISoldierAbstract implements ISoldier {
 
 	private int hp;
 	private int strength;
 	
 	
-	public SoldierAbstract(int hp, int strength) {
+	public ISoldierAbstract(int hp, int strength) {
 		super();
 		this.hp = hp;
 		this.strength = strength;
@@ -14,7 +14,7 @@ public abstract class SoldierAbstract implements Soldier {
 
 
 	@Override
-	public int strike() {
+	public int strikeForce() {
 		return strength;
 	}
 
@@ -24,7 +24,7 @@ public abstract class SoldierAbstract implements Soldier {
 	}
 
 	@Override
-	public int getHp() {
+	public int getHealthPoints() {
 		return hp;
 	}
 

@@ -1,17 +1,17 @@
 package model.decorateur;
 
-public class WeaponDeco implements Soldier {
+public class WeaponDeco implements ISoldier {
 
-	private Soldier s;
+	private ISoldier s;
 	
-	public WeaponDeco(Soldier s) {
+	public WeaponDeco(ISoldier s) {
 		super();
 		this.s = s;
 	}
 
 	@Override
-	public int strike() {
-		return s.strike();
+	public int strikeForce() {
+		return s.strikeForce();
 	}
 
 	@Override
@@ -20,11 +20,11 @@ public class WeaponDeco implements Soldier {
 	}
 
 	@Override
-	public int getHp() {
-		return s.getHp();
+	public int getHealthPoints() {
+		return s.getHealthPoints();
 	}
 	
-	public Soldier getDeleg(){
+	public ISoldier getDeleg(){
 		return s;
 	}
 

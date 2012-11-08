@@ -1,6 +1,6 @@
 package model.proxy;
 
-public interface SoldierProxyInterface {
+public interface Soldier {
 	
 	public void addSword();
 	public void addShield();

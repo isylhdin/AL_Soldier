@@ -1,23 +1,11 @@
 package model.decorateur;
 
-public class Shield extends WeaponDeco {
+public class Shield extends AbstractWeapon {
 
 	
-	public Shield(Soldier s) {
-		super(s);
+	public Shield(ISoldier s) {
+		super(s,60,3);
 	}
 
-	@Override
-	public int strike() {
-		int shieldDamage = 60;
-		int totalDamage = super.strike() + shieldDamage;
-		System.out.println("Shield + other damage = "+ totalDamage);
-		return totalDamage;
-	}
-
-	@Override
-	public void parry(int damage) {
-		super.parry(damage/3);
-	}
 
 }
