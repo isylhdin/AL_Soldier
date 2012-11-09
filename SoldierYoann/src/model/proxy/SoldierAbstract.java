@@ -57,7 +57,7 @@ public abstract class SoldierAbstract implements Soldier {
 	}
 
 	@Override
-	public int strike() {
+	public int strikeForce() {
 		return soldier.strikeForce();
 	}
 
@@ -68,7 +68,7 @@ public abstract class SoldierAbstract implements Soldier {
 	}
 
 	@Override
-	public int getHp() {
+	public int getHealthPoints() {
 		return soldier.getHealthPoints();
 	}
 

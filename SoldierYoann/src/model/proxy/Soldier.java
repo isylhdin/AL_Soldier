@@ -5,9 +5,9 @@ public interface Soldier {
 	public void addSword();
 	public void addShield();
 	
-	public int strike();
+	public int strikeForce();
 	public void parry(int damage);
-	public int getHp();
+	public int getHealthPoints();
 	
 	
 }
