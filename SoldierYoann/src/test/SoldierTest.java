@@ -11,6 +11,8 @@ import model.proxy.HorseMan;
 import model.proxy.InfantryMan;
 import model.proxy.Soldier;
 import model.proxy.SoldierAbstract;
+import model.visitor.SoldierPrintConcrete;
+import model.visitor.SoldierTypeConcrete;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -98,7 +100,7 @@ public class SoldierTest {
 	/*****************************  Composite Test ***************************/
 
 	@Test
-	public void addGroupsToArmyTest(){
+	public void addGroupsTest(){
 
 		group1.addSoldier(soldier1);
 		group1.addSoldier(soldier2);
@@ -110,7 +112,7 @@ public class SoldierTest {
 
 	@Test
 	public void getArmyHealthPointTest(){
-		addGroupsToArmyTest();
+		addGroupsTest();
 		army.addSoldier(group1);
 		army.addSoldier(group2);
 		assertEquals(3,army.getNbSoldier());
@@ -119,7 +121,7 @@ public class SoldierTest {
 
 	@Test
 	public void strikeForceArmyTest(){
-		addGroupsToArmyTest();
+		addGroupsTest();
 		army.addSoldier(group1);
 		army.addSoldier(group2);
 		assertEquals(soldier1.strikeForce()+ soldier2.strikeForce()+soldier3.strikeForce(),army.strikeForce());
@@ -127,7 +129,7 @@ public class SoldierTest {
 	
 	@Test
 	public void parryArmyTest(){
-		addGroupsToArmyTest();
+		addGroupsTest();
 		army.addSoldier(group1);
 		army.addSoldier(group2);
 		
@@ -138,7 +140,7 @@ public class SoldierTest {
 	
 	@Test
 	public void addArmyShieldTest(){
-		addGroupsToArmyTest();
+		addGroupsTest();
 		army.addSoldier(group1);
 		army.addSoldier(group2);
 		//soldat a un bouclier en plus = dégat / 3
@@ -148,5 +150,20 @@ public class SoldierTest {
 		assertEquals(67,army.getHealthPoints());
 		System.out.println("-----------------------");
 	}
+	
+	
+	/*****************************  Visitor Test ***************************/
 
+	@Test
+	public void PrintArmyTest(){
+		addGroupsTest();
+		army.addSoldier(group1);
+		army.addSoldier(group2);
+		army.accept(new SoldierPrintConcrete());
+		System.out.println("ET");
+		army.accept(new SoldierTypeConcrete());
+		System.out.println("-----------------------");
+	}
+	
+	
 }

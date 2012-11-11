@@ -7,6 +7,7 @@ import org.hamcrest.core.IsInstanceOf;
 
 import model.proxy.Soldier;
 import model.proxy.SoldierAbstract;
+import model.visitor.SoldierVisitor;
 
 public class Army implements Soldier {
 
@@ -77,7 +78,11 @@ public class Army implements Soldier {
 		army.remove(s);
 	}
 
-
+	public List<Soldier> getListOfSoldier(){
+		return this.army;
+	}
+	
+	
 	public int getNbSoldier(){
 		int nbSoldier = 0;	
 		for(Soldier s : army){
@@ -89,6 +94,11 @@ public class Army implements Soldier {
 			}
 		}
 		return nbSoldier;
+	}
+
+	@Override
+	public void accept(SoldierVisitor s) {
+		s.visit(this);
 	}
 
 
