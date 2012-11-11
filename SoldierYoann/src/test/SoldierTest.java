@@ -7,6 +7,7 @@ import model.decorateur.IInfantryMan;
 import model.decorateur.Shield;
 import model.decorateur.ISoldier;
 import model.decorateur.Sword;
+import model.proxy.HorseMan;
 import model.proxy.InfantryMan;
 import model.proxy.Soldier;
 import model.proxy.SoldierAbstract;
@@ -37,7 +38,7 @@ public class SoldierTest {
 		group1 = new Army();
 		group2 = new Army();
 		soldier1 = new InfantryMan();
-		soldier2 = new InfantryMan();
+		soldier2 = new HorseMan();
 		soldier3 = new InfantryMan();
 	}
 
@@ -102,7 +103,7 @@ public class SoldierTest {
 		group1.addSoldier(soldier1);
 		group1.addSoldier(soldier2);
 		assertEquals(2,group1.getNbSoldier());
-
+		
 		group2.addSoldier(soldier3);
 		assertEquals(1,group2.getNbSoldier());
 	}
@@ -112,9 +113,40 @@ public class SoldierTest {
 		addGroupsToArmyTest();
 		army.addSoldier(group1);
 		army.addSoldier(group2);
+		assertEquals(3,army.getNbSoldier());
 		assertEquals(soldier1.getHealthPoints()+ soldier2.getHealthPoints()+soldier3.getHealthPoints(),army.getHealthPoints());
 	}
 
-
+	@Test
+	public void strikeForceArmyTest(){
+		addGroupsToArmyTest();
+		army.addSoldier(group1);
+		army.addSoldier(group2);
+		assertEquals(soldier1.strikeForce()+ soldier2.strikeForce()+soldier3.strikeForce(),army.strikeForce());
+	}
+	
+	@Test
+	public void parryArmyTest(){
+		addGroupsToArmyTest();
+		army.addSoldier(group1);
+		army.addSoldier(group2);
+		
+		army.addShield();
+		assertEquals(soldier1.strikeForce()+ soldier2.strikeForce()+soldier3.strikeForce(),army.strikeForce());
+		System.out.println("-----------------------");
+	}
+	
+	@Test
+	public void addArmyShieldTest(){
+		addGroupsToArmyTest();
+		army.addSoldier(group1);
+		army.addSoldier(group2);
+		//soldat a un bouclier en plus = dégat / 3
+		soldier1.addShield();
+		army.parry(300);
+		
+		assertEquals(67,army.getHealthPoints());
+		System.out.println("-----------------------");
+	}
 
 }

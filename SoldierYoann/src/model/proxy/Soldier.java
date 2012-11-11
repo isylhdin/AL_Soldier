@@ -8,6 +8,5 @@ public interface Soldier {
 	public int strikeForce();
 	public void parry(int damage);
 	public int getHealthPoints();
-	
-	
+			
 }

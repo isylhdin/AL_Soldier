@@ -71,5 +71,7 @@ public abstract class SoldierAbstract implements Soldier {
 	public int getHealthPoints() {
 		return soldier.getHealthPoints();
 	}
+	
+
 
 }

@@ -3,11 +3,19 @@ package model.composite;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.core.IsInstanceOf;
+
 import model.proxy.Soldier;
+import model.proxy.SoldierAbstract;
 
 public class Army implements Soldier {
 
-	private List<Soldier> army = new ArrayList<Soldier>();
+	private List<Soldier> army;
+
+
+	public Army(){
+		army = new ArrayList<Soldier>();
+	}
 
 	@Override
 	public void addSword() {
@@ -32,11 +40,23 @@ public class Army implements Soldier {
 		return allDamage;
 	}
 
+
 	@Override
 	public void parry(int damage) {
-		int damagePerSoldier = damage / this.army.size();
+		int damagePerSoldier  = damage / getNbSoldier();
+		System.out.println("Each soldat has to parry "+ damagePerSoldier + " damage");
+		divideParry(damagePerSoldier);
+
+	}
+
+
+	public void divideParry(int damage){
 		for (Soldier s : army) {
-			s.parry(damagePerSoldier);
+			if(s instanceof Army){
+				((Army) s).divideParry(damage);
+			}else{
+				s.parry(damage);
+			}
 		}
 	}
 
@@ -57,8 +77,18 @@ public class Army implements Soldier {
 		army.remove(s);
 	}
 
+
 	public int getNbSoldier(){
-		return army.size();
+		int nbSoldier = 0;	
+		for(Soldier s : army){
+			if(s instanceof Army){
+				nbSoldier += ((Army)s).getNbSoldier();	
+			}
+			else {
+				nbSoldier += 1;		
+			}
+		}
+		return nbSoldier;
 	}
 
 
