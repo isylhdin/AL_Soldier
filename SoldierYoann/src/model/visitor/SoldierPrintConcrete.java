@@ -13,21 +13,15 @@ public class SoldierPrintConcrete implements SoldierVisitor {
 	private void print(Soldier s){
 		int healthPoint = s.getHealthPoints();
 		int strikeForce = s.strikeForce();
-		String className = s.getClass().getName();
+		String name = s.getName();
 
-		System.out.println(className+" has "+healthPoint+" healthpoint and "+strikeForce+" strengh");
+		System.out.println(name+" has "+healthPoint+" healthpoint and "+strikeForce+" strengh");
 	}
 
 
 	@Override
 	public void visit(Army a) {
-		for(Soldier s : a.getListOfSoldier()){
-			if(s instanceof Army){
-				this.visit((Army)s);
-			}else{
-				print(s);
-			}
-		}	
+		print(a);
 	}
 
 	@Override

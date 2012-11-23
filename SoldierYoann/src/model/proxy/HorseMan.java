@@ -3,10 +3,15 @@ package model.proxy;
 import model.decorateur.IHorseMan;
 import model.visitor.SoldierVisitor;
 
-public class HorseMan extends SoldierAbstract {
+public abstract class HorseMan extends SoldierAbstract {
 
 	public HorseMan() {
 		super(new IHorseMan());
+
+	}
+	
+	public HorseMan(String name) {
+		super(new IHorseMan(name));
 
 	}
 
@@ -16,5 +21,6 @@ public class HorseMan extends SoldierAbstract {
 		
 	}
 
+	public abstract void addWeapon();
 
 }

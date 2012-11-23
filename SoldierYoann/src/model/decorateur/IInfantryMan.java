@@ -7,7 +7,12 @@ public class IInfantryMan extends ISoldierAbstract implements ISoldier {
 	
 	
 	public IInfantryMan() {
-		super(hp, strength);
+		super(hp, strength, "InfantryMan");
+	}
+	
+
+	public IInfantryMan(String name) {
+		super(hp, strength, name);
 	}
 	
 

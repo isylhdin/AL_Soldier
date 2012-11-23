@@ -27,5 +27,10 @@ public class WeaponDeco implements ISoldier {
 	public ISoldier getDeleg(){
 		return s;
 	}
+	
+	@Override
+	public String getName() {
+		return s.getName();
+	}
 
 }

@@ -1,16 +1,45 @@
 package model.proxy;
 
+import java.util.Observer;
+
+import model.decorateur.AbstractWeapon;
+import model.observer.SoldierObservable;
 import model.visitor.SoldierVisitor;
 
-public interface Soldier {
+public abstract class Soldier {
 	
-	public void addSword();
-	public void addShield();
+	SoldierObservable soldierObservable = new SoldierObservable();
 	
-	public int strikeForce();
-	public void parry(int damage);
-	public int getHealthPoints();
+	/* A supprimer */
+	public abstract void addSword();
+	public abstract void addShield();
+	/*********************************/
 	
-	public void accept(SoldierVisitor s);
+	public abstract void addWeapon();
+	      
+	public abstract int strikeForce();
+	
+	
+	public void parry(int damage) {
+		soldierObservable.notifyObservers(this);
+	}
+	
+	public abstract int getHealthPoints();
+	
+	public abstract String getName();
+	        
+	public abstract void accept(SoldierVisitor s);
+	
+	
+	public void addObserver(Observer observer){
+		soldierObservable.addObserver(observer);
+	};
+	
+	public void removeObserver(Observer observer){
+		soldierObservable.deleteObserver(observer);
+	}
+	
+	
+	
 			
 }

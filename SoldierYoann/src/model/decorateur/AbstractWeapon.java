@@ -1,11 +1,15 @@
 package model.decorateur;
 
 public class AbstractWeapon extends WeaponDeco {
+	
+	private int weaponDamage;
+	private double parryRatio;
 
 	public AbstractWeapon(ISoldier s, int force, double parryRatio) {
 		super(s);
-		weaponDamage = force;
+		this.weaponDamage = force;
 		this.parryRatio = parryRatio;
+		
 	}
 
 	@Override
@@ -18,7 +22,6 @@ public class AbstractWeapon extends WeaponDeco {
 		super.parry((int) (damage / parryRatio));
 	}
 
-	private int weaponDamage;
-	private double parryRatio;
+	
 
 }

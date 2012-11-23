@@ -22,4 +22,6 @@ public interface ISoldier {
 	 * @return the health points of a soldier
 	 */
 	public int getHealthPoints();
+	
+	public String getName();	
 }

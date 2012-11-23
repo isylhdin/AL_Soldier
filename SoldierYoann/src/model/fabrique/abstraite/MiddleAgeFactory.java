@@ -1,0 +1,19 @@
+package model.fabrique.abstraite;
+
+import model.proxy.HorseMan;
+import model.proxy.InfantryMan;
+import model.proxy.Soldier;
+
+public class MiddleAgeFactory implements AbstractFactory {
+
+//	@Override
+//	public AbstractInfantryMan newHorseMan(String name) {
+//		return new HorseManMiddleAge(name);
+//	}
+
+	@Override
+	public InfantryMan newInfantryMan(String name) {
+		return new InfantryManMiddleAge(name);
+	}
+
+}
