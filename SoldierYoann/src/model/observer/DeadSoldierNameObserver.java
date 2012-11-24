@@ -11,7 +11,6 @@ public class DeadSoldierNameObserver implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg) {
-		System.out.println("COUCOU");
 		Soldier s = (Soldier)arg;
 		if(s.getHealthPoints() <= 0){
 		

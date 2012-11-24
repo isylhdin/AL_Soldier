@@ -11,8 +11,8 @@ public abstract class Soldier {
 	SoldierObservable soldierObservable = new SoldierObservable();
 	
 	/* A supprimer */
-	public abstract void addSword();
-	public abstract void addShield();
+//	public abstract void addSword();
+//	public abstract void addShield();
 	/*********************************/
 	
 	public abstract void addWeapon();

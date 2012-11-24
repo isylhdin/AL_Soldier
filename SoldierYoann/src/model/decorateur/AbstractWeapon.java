@@ -4,12 +4,18 @@ public class AbstractWeapon extends WeaponDeco {
 	
 	private int weaponDamage;
 	private double parryRatio;
+	private boolean isOneHand;
+	private boolean canBeHandledInBothHands;
 
-	public AbstractWeapon(ISoldier s, int force, double parryRatio) {
+	
+	public AbstractWeapon(ISoldier s, int weaponDamage, double parryRatio,
+			boolean isOneHand, boolean canBeHandledInBothHands,
+			boolean canBeCombinedWithOtherWeaponType) {
 		super(s);
-		this.weaponDamage = force;
+		this.weaponDamage = weaponDamage;
 		this.parryRatio = parryRatio;
-		
+		this.isOneHand = isOneHand;
+		this.canBeHandledInBothHands = canBeHandledInBothHands;
 	}
 
 	@Override
@@ -22,6 +28,18 @@ public class AbstractWeapon extends WeaponDeco {
 		super.parry((int) (damage / parryRatio));
 	}
 
-	
+	/**
+	 * @return the isOneHand
+	 */
+	public boolean isOneHand() {
+		return isOneHand;
+	}
+
+	/**
+	 * @return the canBeHandledInBothHands
+	 */
+	public boolean CanBeHandledInBothHands() {
+		return canBeHandledInBothHands;
+	}
 
 }

@@ -15,19 +15,19 @@ public class Army extends Soldier {
 		army = new ArrayList<Soldier>();
 	}
 
-	@Override
-	public void addSword() {
-		for (Soldier s : army) {
-			s.addSword();
-		}
-	}
-
-	@Override
-	public void addShield() {
-		for (Soldier s : army) {
-			s.addShield();
-		}
-	}
+//	@Override
+//	public void addSword() {
+//		for (Soldier s : army) {
+//			s.addSword();
+//		}
+//	}
+//
+//	@Override
+//	public void addShield() {
+//		for (Soldier s : army) {
+//			s.addShield();
+//		}
+//	}
 
 	@Override
 	public int strikeForce() {

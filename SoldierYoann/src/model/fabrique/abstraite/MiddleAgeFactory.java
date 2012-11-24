@@ -6,10 +6,10 @@ import model.proxy.Soldier;
 
 public class MiddleAgeFactory implements AbstractFactory {
 
-//	@Override
-//	public AbstractInfantryMan newHorseMan(String name) {
-//		return new HorseManMiddleAge(name);
-//	}
+	@Override
+	public HorseMan newHorseMan(String name) {
+		return new HorseManMiddleAge(name);
+	}
 
 	@Override
 	public InfantryMan newInfantryMan(String name) {

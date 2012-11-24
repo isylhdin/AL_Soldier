@@ -1,16 +1,23 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+
+import java.lang.reflect.Method;
+
 import model.composite.Army;
+import model.decorateur.AbstractWeapon;
 import model.decorateur.IInfantryMan;
 import model.decorateur.ISoldier;
+import model.decorateur.LightSaber;
 import model.decorateur.Shield;
 import model.decorateur.Sword;
+import model.decorateur.Winchester;
 import model.fabrique.abstraite.AbstractFactory;
 import model.fabrique.abstraite.HorseManMiddleAge;
 import model.fabrique.abstraite.InfantryManMiddleAge;
 import model.fabrique.abstraite.MiddleAgeFactory;
 import model.fabrique.abstraite.ScienceFictionFactory;
+import model.fabrique.abstraite.WorldWarFactory;
 import model.observer.DeadSoldierCountObserver;
 import model.observer.DeadSoldierNameObserver;
 import model.proxy.HorseMan;
@@ -89,11 +96,10 @@ public class SoldierTest {
 		SoldierAbstract infantryMan = new InfantryManMiddleAge("florian");
 
 		//Ajout d'une premiere sword
-		infantryMan.addSword();
+		infantryMan.addWeapon();
 
 		//Il n'est pas possible d'en ajouter une autre
 		Assert.assertEquals(false,infantryMan.canAddWeapon(Sword.class));
-		System.out.println("-----------------------");
 	}
 
 	
@@ -130,9 +136,8 @@ public class SoldierTest {
 		army.addSoldier(group1);
 		army.addSoldier(group2);
 
-		army.addShield();
+		army.addWeapon();
 		assertEquals(soldier1.strikeForce()+ soldier2.strikeForce()+soldier3.strikeForce(),army.strikeForce());
-		System.out.println("-----------------------");
 	}
 
 	@Test
@@ -144,7 +149,6 @@ public class SoldierTest {
 		army.parry(300);
 
 		assertEquals(50,army.getHealthPoints());
-		System.out.println("-----------------------");
 	}
 
 
@@ -199,21 +203,37 @@ public class SoldierTest {
 
 	}
 	
+	/*****************************  Factory Test ***************************/
+	
 	@Test
-	public void addWeapon(){
+	public void addWeaponFactory(){
 		AbstractFactory middleAge = new MiddleAgeFactory();
 		AbstractFactory scienceFiction = new ScienceFictionFactory();
+		AbstractFactory worldWar = new WorldWarFactory();
 		
 		InfantryMan iM =middleAge.newInfantryMan("yoann");
 		iM.addWeapon();
 		iM.addWeapon();
-		iM.addWeapon();
-		System.out.println("LA : "+iM.equipedItems);
+		Assert.assertEquals(false,iM.canAddWeapon(Sword.class));
+		Assert.assertEquals(false,iM.canAddWeapon(Shield.class));
+		System.out.println("EquipedItems de middleAge : "+iM.equipedItems);
 		
 		InfantryMan iS = scienceFiction.newInfantryMan("yoann");
 		iS.addWeapon();
 		iS.addWeapon();
-		System.out.println("LA : "+iS.equipedItems);
+		Assert.assertEquals(false,iM.canAddWeapon(LightSaber.class));
+		Assert.assertEquals(2,iM.equipedItems.size());
+		System.out.println("StrikeForce : "+iS.strikeForce());
+		System.out.println("EquipedItems de scienceFiction : "+iS.equipedItems);
+		
+		InfantryMan iW = worldWar.newInfantryMan("albert");
+		iW.addWeapon();
+		Assert.assertEquals(false,iW.canAddWeapon(Winchester.class));
+		Assert.assertEquals(1,iW.equipedItems.size());
+		System.out.println("StrikeForce : "+iW.strikeForce());
+		System.out.println("EquipedItems de worldWar : "+iW.equipedItems);	
+		
+		
 
 		System.out.println("------------------------------");
 	}

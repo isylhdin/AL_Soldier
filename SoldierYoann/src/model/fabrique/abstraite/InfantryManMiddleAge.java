@@ -13,11 +13,12 @@ public class InfantryManMiddleAge extends InfantryMan{
 	}
 	
 	
+	@Override
 	public void addWeapon() {
-		if(this.equipedItems.isEmpty()){
-			this.addWeapon(Sword.class);
+		if(canAddWeapon(Sword.class)){
+			addWeapon(Sword.class);
 		}else{
-			this.addWeapon(Shield.class);
+			addWeapon(Shield.class);
 		}
 	}
 	
