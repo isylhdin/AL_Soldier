@@ -1,7 +1,5 @@
 package model.fabrique.abstraite;
 
-import java.lang.reflect.Field;
-
 import model.decorateur.Shield;
 import model.decorateur.Sword;
 import model.proxy.InfantryMan;

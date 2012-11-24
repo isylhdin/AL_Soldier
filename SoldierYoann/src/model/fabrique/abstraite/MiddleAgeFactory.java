@@ -2,7 +2,6 @@ package model.fabrique.abstraite;
 
 import model.proxy.HorseMan;
 import model.proxy.InfantryMan;
-import model.proxy.Soldier;
 
 public class MiddleAgeFactory implements AbstractFactory {
 

@@ -2,13 +2,12 @@ package model.proxy;
 
 import java.util.Observer;
 
-import model.decorateur.AbstractWeapon;
 import model.observer.SoldierObservable;
 import model.visitor.SoldierVisitor;
 
 public abstract class Soldier {
 	
-	SoldierObservable soldierObservable = new SoldierObservable();
+	private SoldierObservable soldierObservable = new SoldierObservable();
 	
 	/* A supprimer */
 //	public abstract void addSword();

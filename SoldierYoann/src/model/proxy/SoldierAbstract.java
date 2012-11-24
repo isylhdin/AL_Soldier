@@ -1,17 +1,13 @@
 package model.proxy;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.decorateur.AbstractWeapon;
 import model.decorateur.IInfantryMan;
-import model.decorateur.Shield;
 import model.decorateur.ISoldier;
-import model.decorateur.Sword;
-import model.decorateur.WeaponDeco;
 
 
 

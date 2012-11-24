@@ -1,11 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-
-import java.lang.reflect.Method;
-
 import model.composite.Army;
-import model.decorateur.AbstractWeapon;
 import model.decorateur.IInfantryMan;
 import model.decorateur.ISoldier;
 import model.decorateur.LightSaber;
@@ -20,7 +16,6 @@ import model.fabrique.abstraite.ScienceFictionFactory;
 import model.fabrique.abstraite.WorldWarFactory;
 import model.observer.DeadSoldierCountObserver;
 import model.observer.DeadSoldierNameObserver;
-import model.proxy.HorseMan;
 import model.proxy.InfantryMan;
 import model.proxy.Soldier;
 import model.proxy.SoldierAbstract;
@@ -81,7 +76,7 @@ public class SoldierTest {
 	@Test
 	public void parryTest(){
 		int damage = 360;
-		System.out.println("Soldier reÃ§oit un coup de "+damage+" degats et il pare avec son bouclier, il a initialement " + s.getHealthPoints() + " hp");
+		System.out.println("Soldier reçoit un coup de "+damage+" degats et il pare avec son bouclier, il a initialement " + s.getHealthPoints() + " hp");
 		shield.parry(damage);
 		assertEquals(s.getHealthPoints(), 40);
 		System.out.println("il lui reste "+ s.getHealthPoints() +" hp");
@@ -216,9 +211,10 @@ public class SoldierTest {
 		iM.addWeapon();
 		Assert.assertEquals(false,iM.canAddWeapon(Sword.class));
 		Assert.assertEquals(false,iM.canAddWeapon(Shield.class));
+		System.out.println("StrikeForce : "+iM.strikeForce());
 		System.out.println("EquipedItems de middleAge : "+iM.equipedItems);
 		
-		InfantryMan iS = scienceFiction.newInfantryMan("yoann");
+		InfantryMan iS = scienceFiction.newInfantryMan("richard");
 		iS.addWeapon();
 		iS.addWeapon();
 		Assert.assertEquals(false,iM.canAddWeapon(LightSaber.class));
@@ -235,6 +231,38 @@ public class SoldierTest {
 		
 		
 
+		System.out.println("------------------------------");
+	}
+	
+	
+	
+	@Test
+	public void addWeaponArmyFactory(){
+		AbstractFactory middleAge = new MiddleAgeFactory();
+		AbstractFactory scienceFiction = new ScienceFictionFactory();
+		AbstractFactory worldWar = new WorldWarFactory();
+		
+		InfantryMan iM =middleAge.newInfantryMan("yoann");
+		InfantryMan iS = scienceFiction.newInfantryMan("richard");
+		InfantryMan iW = worldWar.newInfantryMan("albert");
+		
+		group1.addSoldier(iM);
+		group1.addSoldier(iS);
+
+		group2.addSoldier(iW);
+		army.addSoldier(group1);
+		army.addSoldier(group2);
+		
+		army.addWeapon();
+		Assert.assertEquals(3,iW.equipedItems.size()+iM.equipedItems.size()+iS.equipedItems.size());
+		army.addWeapon();
+		Assert.assertEquals(5,iW.equipedItems.size()+iM.equipedItems.size()+iS.equipedItems.size());
+		
+		System.out.println("EquipedItems de worldWar : "+iW.equipedItems);	
+		System.out.println("EquipedItems de scienceFiction : "+iS.equipedItems);
+		System.out.println("EquipedItems de middleAge : "+iM.equipedItems);
+		Assert.assertEquals(1410,army.strikeForce());
+		
 		System.out.println("------------------------------");
 	}
 	
