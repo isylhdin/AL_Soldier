@@ -1,5 +1,7 @@
 package model.fabrique.abstraite;
 
+import java.util.Observable;
+
 import model.decorateur.LightSaber;
 import model.proxy.InfantryMan;
 

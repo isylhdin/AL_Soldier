@@ -9,8 +9,7 @@ public class AbstractWeapon extends WeaponDeco {
 
 	
 	public AbstractWeapon(ISoldier s, int weaponDamage, double parryRatio,
-			boolean isOneHand, boolean canBeHandledInBothHands,
-			boolean canBeCombinedWithOtherWeaponType) {
+			boolean isOneHand, boolean canBeHandledInBothHands) {
 		super(s);
 		this.weaponDamage = weaponDamage;
 		this.parryRatio = parryRatio;

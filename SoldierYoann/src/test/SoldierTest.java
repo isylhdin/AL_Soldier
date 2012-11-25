@@ -144,6 +144,7 @@ public class SoldierTest {
 		army.parry(300);
 
 		assertEquals(50,army.getHealthPoints());
+		System.out.println("-----------------------");
 	}
 
 
@@ -174,26 +175,10 @@ public class SoldierTest {
 		army.addSoldier(group1);
 		army.addSoldier(group2);
 
-		DeadSoldierNameObserver dsno = DeadSoldierNameObserver.getInstance();
-		group1.addObserver(dsno);
-		group2.addObserver(dsno);
-		army.addObserver(dsno);
-		soldier1.addObserver(dsno);
-		soldier2.addObserver(dsno);
-		soldier3.addObserver(dsno);
-
-		DeadSoldierCountObserver dsco = DeadSoldierCountObserver.getInstance();
-		soldier1.addObserver(dsco);
-		soldier2.addObserver(dsco);
-		soldier3.addObserver(dsco);
-		group1.addObserver(dsco);
-		group2.addObserver(dsco);
-		army.addObserver(dsco);
-		
-
 		army.parry(400);
 
-		army.accept(new SoldierPrintConcrete());
+		Assert.assertTrue(DeadSoldierCountObserver.getInstance().getNbDeadSoldier() >= 3);
+
 		System.out.println("------------------------------");
 
 	}
@@ -213,6 +198,8 @@ public class SoldierTest {
 		Assert.assertEquals(false,iM.canAddWeapon(Shield.class));
 		System.out.println("StrikeForce : "+iM.strikeForce());
 		System.out.println("EquipedItems de middleAge : "+iM.equipedItems);
+		
+		
 		
 		InfantryMan iS = scienceFiction.newInfantryMan("richard");
 		iS.addWeapon();
@@ -242,26 +229,41 @@ public class SoldierTest {
 		AbstractFactory scienceFiction = new ScienceFictionFactory();
 		AbstractFactory worldWar = new WorldWarFactory();
 		
-		InfantryMan iM =middleAge.newInfantryMan("yoann");
+		InfantryMan iM1 = middleAge.newInfantryMan("yoann");
+		InfantryMan iM2 = middleAge.newInfantryMan("cedric");
+		InfantryMan iM3 = middleAge.newInfantryMan("damien");
 		InfantryMan iS = scienceFiction.newInfantryMan("richard");
 		InfantryMan iW = worldWar.newInfantryMan("albert");
 		
-		group1.addSoldier(iM);
-		group1.addSoldier(iS);
+		
+		Army group1 = middleAge.newArmy();
+		Army group2 = middleAge.newArmy();
+		Army army = middleAge.newArmy();
+		
+		group1.addSoldier(iM1);
+		group1.addSoldier(iM2);
 
-		group2.addSoldier(iW);
+		group2.addSoldier(iM3);
 		army.addSoldier(group1);
 		army.addSoldier(group2);
 		
-		army.addWeapon();
-		Assert.assertEquals(3,iW.equipedItems.size()+iM.equipedItems.size()+iS.equipedItems.size());
-		army.addWeapon();
-		Assert.assertEquals(5,iW.equipedItems.size()+iM.equipedItems.size()+iS.equipedItems.size());
+		//ne doit pas marcher car de famille différente
+		group1.addSoldier(iS);
+		Assert.assertTrue(group1.getListOfSoldier().size() == 2);
 		
-		System.out.println("EquipedItems de worldWar : "+iW.equipedItems);	
-		System.out.println("EquipedItems de scienceFiction : "+iS.equipedItems);
-		System.out.println("EquipedItems de middleAge : "+iM.equipedItems);
-		Assert.assertEquals(1410,army.strikeForce());
+		
+		army.addWeapon();
+		Assert.assertEquals(3,iM1.equipedItems.size()+iM2.equipedItems.size()+iM3.equipedItems.size());
+		army.addWeapon();
+		Assert.assertEquals(6,iM1.equipedItems.size()+iM2.equipedItems.size()+iM3.equipedItems.size());
+		//ne va pas marcher car chaque soldat a déjà une épée et un boouclier
+		army.addWeapon();
+		Assert.assertEquals(6,iM1.equipedItems.size()+iM2.equipedItems.size()+iM3.equipedItems.size());
+		
+		System.out.println("EquipedItems de "+ iM1.getName()+" : "+iM1.equipedItems);	
+		System.out.println("EquipedItems de "+ iM2.getName()+" : "+iM2.equipedItems);
+		System.out.println("EquipedItems de "+ iM3.getName()+" : "+iM3.equipedItems);
+		Assert.assertEquals(1080,army.strikeForce());
 		
 		System.out.println("------------------------------");
 	}

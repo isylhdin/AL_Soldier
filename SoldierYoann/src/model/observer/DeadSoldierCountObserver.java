@@ -9,9 +9,6 @@ import model.proxy.Soldier;
 public class DeadSoldierCountObserver implements Observer{
 
 
-
-
-
 	private int nbDeadSoldier = 0;
 
 	@Override
@@ -29,6 +26,9 @@ public class DeadSoldierCountObserver implements Observer{
 
 	}
 
+	public int getNbDeadSoldier(){
+		return this.nbDeadSoldier;
+	}
 
 
 	private static DeadSoldierCountObserver dsco;

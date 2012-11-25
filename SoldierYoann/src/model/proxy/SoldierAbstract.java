@@ -8,6 +8,7 @@ import java.util.List;
 import model.decorateur.AbstractWeapon;
 import model.decorateur.IInfantryMan;
 import model.decorateur.ISoldier;
+import model.observer.DeadSoldierCountObserver;
 
 
 
@@ -15,6 +16,7 @@ public abstract class SoldierAbstract extends Soldier {
 
 	private ISoldier soldier;
 	public List<String> equipedItems = new ArrayList<String>();
+	
 
 	public SoldierAbstract(ISoldier soldier) {
 		super();
@@ -118,6 +120,7 @@ public abstract class SoldierAbstract extends Soldier {
 	@Override
 	public void parry(int damage) {
 		soldier.parry(damage);
+		super.parry(damage);
 
 	}
 

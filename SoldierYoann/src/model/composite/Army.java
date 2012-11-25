@@ -3,15 +3,20 @@ package model.composite;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.observer.DeadSoldierCountObserver;
+import model.observer.DeadSoldierNameObserver;
 import model.proxy.Soldier;
 import model.visitor.SoldierVisitor;
 
 public class Army extends Soldier {
 
 	private List<Soldier> army;
+	private DeadSoldierCountObserver dc = DeadSoldierCountObserver.getInstance();
+	private DeadSoldierNameObserver dn = DeadSoldierNameObserver.getInstance();
 
 
 	public Army(){
+		super();
 		army = new ArrayList<Soldier>();
 	}
 
@@ -58,6 +63,10 @@ public class Army extends Soldier {
 	}
 
 	public void addSoldier(Soldier s) {
+		for(Soldier soldier : army){
+			s.addObserver(soldier);
+			soldier.addObserver(s);
+		}
 		army.add(s);
 	}
 
